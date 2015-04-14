@@ -1,0 +1,16 @@
+.panel.panel-primary
+  .panel-heading
+    h1 Lista de estudios para la parte #{@bodypart.name} de la especialidad #{@specialty.name}
+  .panel-body
+    table.table.table-striped
+      tr Nombre
+
+      - @studies.each do |study|
+        tr
+          td
+            strong = link_to study.name, study_path(study)
+
+  .panel-footer
+    = link_to 'Nuevo estudio', new_study_path, class: "btn btn-primary"
+    
+    

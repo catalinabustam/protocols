@@ -1,0 +1,20 @@
+.panel.panel-primary
+  .panel-heading
+    h1 Lista de secuencias para el protocolo @protocol del estudio @study en el equipo @device
+  .panel-body
+    table.table.table-striped
+      tr
+        th Name
+
+      - @sequences.each do |sequence|
+        tr
+          td
+            strong = link_to sequence.name, sequence_path(sequence)
+
+  .panel-footer
+  
+    h3 Import CSV
+    = form_tag({:action => :import}, :multipart => true) do
+      = file_field_tag 'upload'
+      = submit_tag("Upload")
+    

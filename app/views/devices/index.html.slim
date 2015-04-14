@@ -1,0 +1,16 @@
+.panel.panel-primary
+  .panel-heading
+    h1 Lista de equipos para el estudio @study de la parte @bodypart de la especialidad @specialty
+  .panel-body
+    table.table.table-striped
+      tr
+        th Name
+
+      - @devices.each do |device|
+        tr
+          td
+            strong = link_to device.name, device_path(specialty)
+
+  .panel-footer
+    = link_to 'Nuevo equipo ', new_device_path, class: "btn btn-primary"
+   
