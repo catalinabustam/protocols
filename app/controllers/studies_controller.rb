@@ -5,15 +5,15 @@ class StudiesController < ApplicationController
 
 
 	def index
-  		@studies = @specialty.bodypart.studies.all
+  		@studies = @bodypart.studies.all
 	end
 
   	def new
-  		@study = @specialty.bodypart.studies.build
+  		@study = @bodypart.studies.build
   	end
 
   	def create
-  		@study= @specialty.bodypart.studies.build(study_params)
+  		@study= @bodypart.studies.build(study_params)
  
   		@study.save
   		redirect_to action: 'index'
@@ -38,7 +38,7 @@ class StudiesController < ApplicationController
   end
 
   def study_params
-    params.require(:bodypart).permit(:name)
+    params.require(:study).permit(:name)
   end
 
 

@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       resources :studies do
         resources :devices do
           resources :protocols do
-              resources :sequences
+              resources :sequences do
+                collection { post :import }
+              end
           end 
         end
       end

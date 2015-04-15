@@ -1,6 +1,6 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de equipos para el estudio @study de la parte @bodypart de la especialidad @specialty
+    h1 Lista de equipos para el estudio #{@study.name} de la parte #{@bodypart.name} de la especialidad #{@specialty.name}
   .panel-body
     table.table.table-striped
       tr
@@ -9,8 +9,8 @@
       - @devices.each do |device|
         tr
           td
-            strong = link_to device.name, device_path(specialty)
+            strong = link_to device.name, specialty_bodypart_study_device_protocols_path(device.study.bodypart.specialty, device.study.bodypart, device.study, device)
 
   .panel-footer
-    = link_to 'Nuevo equipo ', new_device_path, class: "btn btn-primary"
+    = link_to 'Nuevo equipo ', new_specialty_bodypart_study_device_path, class: "btn btn-primary"
    

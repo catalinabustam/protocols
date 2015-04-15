@@ -3,7 +3,7 @@ class Specialty
   	include Mongoid::Timestamps
   	include Mongoid::Attributes::Dynamic
 
-	has_many :bodyparts, inverse_of: :specialty
+	#has_many :bodyparts, inverse_of: :specialty
 	embeds_many :bodyparts, cascade_callbacks: true
 
 	field :name, type: String

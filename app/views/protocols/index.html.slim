@@ -1,17 +1,17 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de protocolos para el estudio @study en el equipo @device
+    h1 Lista de protocolos para el estudio #{@study.name} en el equipo #{@device.name}
   .panel-body
     table.table.table-striped
       tr
         th Name
 
-      - @protocols.each do |protocols|
+      - @protocols.each do |protocol|
         tr
           td
-            strong = link_to protocol.name, protocol_path(specialty)
+            strong = link_to protocol.name, specialty_bodypart_study_device_protocol_sequences_path(protocol.device.study.bodypart.specialty, protocol.device.study.bodypart, protocol.device.study, protocol.device, protocol)
   .panel-footer          
-    = link_to 'Nuevo protocolo', new_protocol_path, class: "btn btn-primary"
+    = link_to 'Nuevo protocolo', new_specialty_bodypart_study_device_protocol_path, class: "btn btn-primary"
 
  
     

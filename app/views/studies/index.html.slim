@@ -8,9 +8,9 @@
       - @studies.each do |study|
         tr
           td
-            strong = link_to study.name, study_path(study)
+            strong = link_to study.name, specialty_bodypart_study_devices_path(study.bodypart.specialty, study.bodypart, study)
 
   .panel-footer
-    = link_to 'Nuevo estudio', new_study_path, class: "btn btn-primary"
+    = link_to 'Nuevo estudio', new_specialty_bodypart_study_path, class: "btn btn-primary"
     
     

@@ -9,7 +9,7 @@
       - @specialty.bodyparts.each do |bodypart|
         tr
           td
-            strong = link_to bodypart.name, specialty_bodyparts_path(bodypart)
+            strong = link_to bodypart.name, specialty_bodypart_studies_path(bodypart.specialty, bodypart)
           td
             
 
