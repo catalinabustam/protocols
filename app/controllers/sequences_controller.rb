@@ -13,25 +13,34 @@ class SequencesController < ApplicationController
   		@sequences = @protocol.sequences.all
 	end
 
-  	def new
-  		@sequence= @protocol.sequences.build
-  	end
+  def new
+  	@sequence= @protocol.sequences.build
+	end
 
-  	def create
-  		@sequence= @protocol.sequences.build(sequence_params)
- 
-  		@sequence.save
-  		redirect_to action: 'index'
-  	end
+  def create
+  	@sequence= @protocol.sequences.build(sequence_params)
+		@sequence.save
+		redirect_to action: 'index'
+	end
 
-  	def import
+	def import
     uploaded_file = params[:upload]
     file=uploaded_file.path()
-    Specialty.import(file)
-    end
+    filename=uploaded_file.original_filename()
+    name=File.basename(filename, File.extname(filename))
+    text = File.read(file) 
+    replace = text.gsub(/ =     /, ",")
+    File.open(file, "w") {|fil| fil.puts replace}
+    Sequence.import(file,@protocol,name)
+    redirect_to action: 'index'
 
-    def show
-    end
+  end
+
+  def show
+    keys_blacklist = %W(created_at updated_at protocol_id _id ) #these are the fields to hide
+    @sequence_showlist = @sequence.attributes.except(*keys_blacklist)
+
+  end
 
   
 

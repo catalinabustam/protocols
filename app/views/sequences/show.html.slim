@@ -1,13 +1,18 @@
-= simple_form_for([@specialty,@bodypart,@study,@device,@protocol,@sequence], html: {class: 'form-horizontal'}) do |f|
-  .panel.panel-primary
-    .panel-heading
-      = content_for :action, 'Nuevo'
-    .panel-body
-      .container
-        = f.error_notification
-        = f.text_field :name
-    .panel-footer
-      = f.button :submit, class: 'btn btn-primary'
-      span.pull-right
-        .btn-group
-          = link_to 'Volver a partes', specialty_bodyparts_path, class: "btn btn-default"
+panel.panel-primary
+  .panel-heading
+    h1 Lista de especialidades
+  .panel-body
+    table.table.table-striped
+      tr
+        td 
+        td 
+
+      - for attribute in @sequence_showlist.keys
+        tr
+          td
+            strong = attribute.capitalize 
+          td
+            = @sequence.attributes[attribute].to_s
+  .panel-footer
+    = link_to 'New Specialty', new_specialty_path, class: "btn btn-primary"
+   
