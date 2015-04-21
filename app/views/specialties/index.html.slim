@@ -1,10 +1,10 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de especialidades
+    h1 Lista de Subespecialidades
   .panel-body
     table.table.table-striped
       tr
-        td Nombre
+        
 
       - @specialties.each do |specialty|
         tr
@@ -12,7 +12,7 @@
             strong = link_to specialty.name, specialty_bodyparts_path(specialty)
           td
             = link_to 'Editar', edit_specialty_path(specialty), class: 'btn btn-warning btn-xs'
-            = link_to 'Eliminar', edit_specialty_path(specialty), class: "btn btn-danger btn-xs"
+            = link_to 'Eliminar', specialty_path(specialty), class: "btn btn-danger btn-xs", method: "delete"
   .panel-footer
-    = link_to 'New Specialty', new_specialty_path, class: "btn btn-primary"
+    = link_to 'Nueva Subespecialidad', new_specialty_path, class: "btn btn-primary"
    

@@ -1,16 +1,21 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de equipos para el estudio #{@study.name} de la parte #{@bodypart.name} de la especialidad #{@specialty.name}
+    h1 Lista de Equipos para el Estudio #{@study.name} de la Anatomía #{@bodypart.name} de la Subespecialidad #{@specialty.name}
   .panel-body
     table.table.table-striped
       tr
-        th Name
 
       - @devices.each do |device|
         tr
           td
-            strong = link_to device.name, specialty_bodypart_study_device_protocols_path(device.study.bodypart.specialty, device.study.bodypart, device.study, device)
+            strong = strong = link_to device.name, specialty_bodypart_study_device_sequences_path(device.study.bodypart.specialty, device.study.bodypart, device.study, device)
+          td
+            = link_to 'Editar', edit_specialty_bodypart_study_device_path(device.study.bodypart.specialty, device.study.bodypart, device.study, device), class: 'btn btn-warning btn-xs'
+            = link_to 'Eliminar', specialty_bodypart_study_device_path(device.study.bodypart.specialty, device.study.bodypart, device.study, device), class: "btn btn-danger btn-xs", method: "delete"
 
   .panel-footer
-    = link_to 'Nuevo equipo ', new_specialty_bodypart_study_device_path, class: "btn btn-primary"
+    = link_to 'Nuevo equipo', new_specialty_bodypart_study_device_path, class: "btn btn-primary"
+    span.pull-right
+        .btn-group
+          = link_to 'Volver a Estudios', specialty_bodypart_studies_path, class: "btn btn-default"
    

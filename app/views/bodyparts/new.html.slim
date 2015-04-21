@@ -1,13 +1,14 @@
 = simple_form_for([@specialty,@bodypart], html: {class: 'form-horizontal'}) do |f|
   .panel.panel-primary
     .panel-heading
+      h1 Nueva Anatomía para para la Subespecialidad #{@specialty.name}
       = content_for :action, 'Nuevo'
     .panel-body
       .container
         = f.error_notification
-        = f.text_field :name
+        = f.input :name, label: "Nombre"
     .panel-footer
-      = f.button :submit, class: 'btn btn-primary'
+      = f.button :submit, 'Crear Anatomía', class: 'btn btn-primary'
       span.pull-right
         .btn-group
-          = link_to 'Volver a partes', specialty_bodyparts_path, class: "btn btn-default"
+          = link_to 'Volver a Anatomias', specialty_bodyparts_path, class: "btn btn-default"

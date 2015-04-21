@@ -5,19 +5,30 @@ class BodypartsController < ApplicationController
 
 
 	def index
-  		bodyparts = @specialty.bodyparts.all
+  	bodyparts = @specialty.bodyparts.all
 	end
 
-  	def new
-  		@bodypart = @specialty.bodyparts.build
-  	end
+  def new
+  	@bodypart = @specialty.bodyparts.build
+  end
 
-  	def create
-  		@bodypart= @specialty.bodyparts.build(bodypart_params)
+  def create
+  	@bodypart= @specialty.bodyparts.build(bodypart_params)
  
-  		@bodypart.save
-  		redirect_to action: 'index'
-  	end
+  	@bodypart.save
+  	redirect_to action: 'index'
+  end
+
+  def update
+    @bodypart.update_attributes(bodypart_params)
+    redirect_to action: 'index'
+  end
+
+  def destroy  
+    @bodypart.destroy
+    redirect_to action: 'index' 
+  end
+
 
   
 
@@ -30,7 +41,7 @@ class BodypartsController < ApplicationController
   end
 
   def set_bodypart
-    @bodypart = @specialty.bodypart.find(params[:id])
+    @bodypart = @specialty.bodyparts.find(params[:id])
   end
 
   def bodypart_params

@@ -3,22 +3,25 @@ class SequencesController < ApplicationController
    before_action :load_bodypart
    before_action :load_study
    before_action :load_device
-   before_action :load_protocol
+   #before_action :load_protocol
 
 
    before_action :set_sequence, only: [:show, :edit, :update, :destroy]
 
 
 	def index
-  		@sequences = @protocol.sequences.all
+  		#@sequences = @protocol.sequences.all
+      @sequences = @device.sequences.all
 	end
 
   def new
-  	@sequence= @protocol.sequences.build
+  	#@sequence= @protocol.sequences.build
+    @sequence= @device.sequences.build
 	end
 
   def create
-  	@sequence= @protocol.sequences.build(sequence_params)
+  	#@sequence= @protocol.sequences.build(sequence_params)
+    @sequence= @device.sequences.build(sequence_params)
 		@sequence.save
 		redirect_to action: 'index'
 	end
@@ -31,7 +34,7 @@ class SequencesController < ApplicationController
     text = File.read(file) 
     replace = text.gsub(/ =     /, ",")
     File.open(file, "w") {|fil| fil.puts replace}
-    Sequence.import(file,@protocol,name)
+    Sequence.import(file,@device,name)
     redirect_to action: 'index'
 
   end
@@ -39,10 +42,22 @@ class SequencesController < ApplicationController
   def show
     keys_blacklist = %W(created_at updated_at protocol_id _id ) #these are the fields to hide
     @sequence_showlist = @sequence.attributes.except(*keys_blacklist)
-
   end
 
-  
+  def edit
+    keys_blacklist = %W(created_at updated_at protocol_id _id ) #these are the fields to hide
+    @sequence_showlist = @sequence.attributes.except(*keys_blacklist)
+  end
+
+   def update
+    @sequence.update_attributes(sequence_params)
+    redirect_to action: 'index'
+  end
+
+  def destroy  
+    @sequence.destroy
+    redirect_to action: 'index' 
+  end
 
 
   private
@@ -69,10 +84,10 @@ class SequencesController < ApplicationController
   end
 
    def set_sequence
-    @sequence = @protocol.sequences.find(params[:id])
+    @sequence = @device.sequences.find(params[:id])
   end
 
   def sequence_params
-    params.require(:sequence).permit(:name)
+    params.require(:sequence).permit!
   end
 end

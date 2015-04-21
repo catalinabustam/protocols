@@ -1,0 +1,27 @@
+= simple_form_for([@specialty,@bodypart,@study,@device,@protocol,@sequence], html: {class: 'form-horizontal'}) do |f|
+  .panel.panel-primary
+    .panel-heading
+      h1 Editar secuencia #{@sequence.nombre}
+      = content_for :action, 'Edit'
+    .panel-body
+    	.container
+      		table.table.table-striped
+      			tr
+        			td 
+        				td 
+
+      						- for attribute in @sequence_showlist.keys
+        						tr
+          							td
+            							strong = attribute.capitalize 
+          							td
+            							= f.text_field attribute.to_sym, :value => @sequence.attributes[attribute].to_s
+  
+  	.panel-footer
+     	= f.button :submit, 'Actualizar', class: 'btn btn-primary'
+        span.pull-right
+
+          .btn-group
+            = link_to 'Volver a secueencias', specialty_bodypart_study_device_sequences_path, class: "btn btn-default"
+
+

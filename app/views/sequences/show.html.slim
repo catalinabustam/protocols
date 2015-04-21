@@ -1,6 +1,6 @@
 panel.panel-primary
   .panel-heading
-    h1 Lista de especialidades
+    h1 #{@sequence.nombre}
   .panel-body
     table.table.table-striped
       tr
@@ -14,5 +14,10 @@ panel.panel-primary
           td
             = @sequence.attributes[attribute].to_s
   .panel-footer
-    = link_to 'New Specialty', new_specialty_path, class: "btn btn-primary"
+    = link_to 'Editar secuencia', edit_specialty_bodypart_study_device_sequence_path, class: "btn btn-primary"
+    span.pull-right
+
+      .btn-group
+        = link_to 'Volver a secuencias', specialty_bodypart_study_device_sequences_path, class: "btn btn-default"
+
    

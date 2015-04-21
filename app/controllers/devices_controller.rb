@@ -9,16 +9,25 @@ class DevicesController < ApplicationController
   		@devices = @study.devices.all
 	end
 
-  	def new
-  		@device = @study.devices.build
-  	end
+	def new
+		@device = @study.devices.build
+	end
+	def create
+		@device= @study.devices.build(device_params)
 
-  	def create
-  		@device= @study.devices.build(device_params)
- 
-  		@device.save
-  		redirect_to action: 'index'
-  	end
+		@device.save
+		redirect_to action: 'index'
+	end
+  
+  def update
+    @device.update_attributes(device_params)
+    redirect_to action: 'index'
+  end
+
+  def destroy  
+    @device.destroy
+    redirect_to action: 'index' 
+  end
 
   
 

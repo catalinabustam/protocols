@@ -1,18 +1,24 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de parte del cuerpo para la especialidad #{@specialty.name}
+    h1 Lista de Anatomías para la Especialidad #{@specialty.name}
   .panel-body
     table.table.table-striped
       tr
-        th Name
+        
 
       - @specialty.bodyparts.each do |bodypart|
         tr
           td
             strong = link_to bodypart.name, specialty_bodypart_studies_path(bodypart.specialty, bodypart)
           td
+            = link_to 'Editar', edit_specialty_bodypart_path(bodypart.specialty, bodypart), class: 'btn btn-warning btn-xs'
+            = link_to 'Eliminar', specialty_bodypart_path(bodypart.specialty, bodypart), class: "btn btn-danger btn-xs", method: "delete"
+         
             
 
   .panel-footer
-    = link_to 'Nueva parte del cuerpo', new_specialty_bodypart_path, class: "btn btn-primary"
+    = link_to 'Nueva Anatomía', new_specialty_bodypart_path, class: "btn btn-primary"
+    span.pull-right
+        .btn-group
+          = link_to 'Volver a subespecialidades', specialties_path, class: "btn btn-default"
     

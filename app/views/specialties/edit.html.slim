@@ -1,0 +1,16 @@
+= simple_form_for(@specialty, html: {class: 'form-horizontal'}) do |f|
+  .panel.panel-primary
+    .panel-heading
+      h1 Editar la subespecialidad #{@specialty.name} 
+      = content_for :action, 'Nuevo'
+
+    .panel-body
+      .container
+        = f.error_notification
+
+        = f.input :name, label: "Nombre"
+    .panel-footer
+      = f.button :submit, 'Actualizar', class: 'btn btn-primary'
+      span.pull-right
+        .btn-group
+          = link_to 'Volver a subespecialidades', specialties_path, class: "btn btn-default"

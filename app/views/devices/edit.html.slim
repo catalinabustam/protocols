@@ -1,0 +1,14 @@
+= simple_form_for([@specialty,@bodypart,@study,@device], html: {class: 'form-horizontal'}) do |f|
+  .panel.panel-primary
+    .panel-heading
+      h1 Editar el equipo #{@device.name}
+      = content_for :action, 'Nuevo'
+    .panel-body
+      .container
+        = f.error_notification
+        = f.input :name, label: "Nombre"
+    .panel-footer
+      = f.button :submit, class: 'btn btn-primary'
+      span.pull-right
+        .btn-group
+          = link_to 'Volver a partes', specialty_bodyparts_path, class: "btn btn-default"

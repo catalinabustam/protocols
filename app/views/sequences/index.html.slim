@@ -1,21 +1,31 @@
 .panel.panel-primary
   .panel-heading
-    h1 Lista de secuencias para el protocolo #{@protocol.name} del estudio #{@study.name} en el equipo #{@device.name}
+    h1 Lista de Secuencias para el Estudio #{@study.name} en el Equipo #{@device.name}
   .panel-body
     table.table.table-striped
       tr
-        th Name
+    
 
       - @sequences.each do |sequence|
         tr
           td
-            strong = link_to sequence.nombre, specialty_bodypart_study_device_protocol_sequence_path(@specialty, @bodypart,@study, @device, @protocol, sequence )
+            strong = link_to sequence.nombre, specialty_bodypart_study_device_sequence_path(@specialty, @bodypart,@study, @device, sequence )
+          td
+            = link_to 'Editar', edit_specialty_bodypart_study_device_sequence_path(@specialty, @bodypart,@study, @device, sequence), class: 'btn btn-warning btn-xs'
+            = link_to 'Eliminar', specialty_bodypart_study_device_sequence_path(@specialty, @bodypart,@study, @device, sequence), class: "btn btn-danger btn-xs", method: "delete"
 
   .panel-footer
 
-    = link_to 'Nueva secuecia', new_specialty_bodypart_study_device_protocol_sequence_path, class: "btn btn-primary"
-    h3 Import CSV
-    = form_tag({:action => :import}, :multipart => true) do
+    //= link_to 'Nueva secuecia', new_specialty_bodypart_study_device_sequence_path, class: "btn btn-primary"
+
+    span.pull-right
+        .btn-group
+          = link_to 'Volver a Equipos', specialty_bodypart_study_devices_path, class: "btn btn-default"
+
+    h3 Importar desde Txt
+    = form_tag({:action => :import}, :type =>"file",:multipart => true, :accept => "text/csv") do
       = file_field_tag 'upload'
-      = submit_tag("Upload")
+      = submit_tag("Subir")
+
+    
     

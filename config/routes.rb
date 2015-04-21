@@ -7,11 +7,11 @@ Rails.application.routes.draw do
     resources :bodyparts do
       resources :studies do
         resources :devices do
-          resources :protocols do
+          #resources :protocols do
               resources :sequences do
                 collection { post :import }
               end
-          end 
+          #end 
         end
       end
     end 
@@ -19,5 +19,5 @@ Rails.application.routes.draw do
 
   
 
-  root to: 'visitors#index'
+  root to: 'specialties#index'
 end
